@@ -1,0 +1,130 @@
+{
+  "B1": {
+    "name": "Dumbbell Kneeling Waiter’s Curls",
+    "group": "Biceps"
+  },
+  "B2": {
+    "name": "Dumbbell Standing Alternating Curls",
+    "group": "Biceps"
+  },
+  "B3": {
+    "name": "Dumbbell Cross Body Hammer Curls",
+    "group": "Biceps"
+  },
+  "B4": {
+    "name": "Dumbbell Drag Curls",
+    "group": "Biceps"
+  },
+  "T1": {
+    "name": "Dumbbell Lying Tricep Extensions",
+    "group": "Triceps"
+  },
+  "T2": {
+    "name": "Dumbbell JM Press",
+    "group": "Triceps"
+  },
+  "T3": {
+    "name": "Dumbbell Kickbacks",
+    "group": "Triceps"
+  },
+  "T4": {
+    "name": "Dumbbell Incline Powerbombs",
+    "group": "Triceps"
+  },
+  "D1": {
+    "name": "Dumbbell Tripod Row",
+    "group": "Back/Dorsal"
+  },
+  "D2": {
+    "name": "Dumbbell High Pulls",
+    "group": "Back/Dorsal"
+  },
+  "D3": {
+    "name": "Dumbbell Pullovers",
+    "group": "Back/Dorsal"
+  },
+  "D4": {
+    "name": "Rubber band T's",
+    "group": "Back/Dorsal"
+  },
+  "L1": {
+    "name": "Dumbbell Bulgarian Split Squats (Upright / Leaning)",
+    "group": "Legs"
+  },
+  "L2": {
+    "name": "Dumbbell Reverse Lunges",
+    "group": "Legs"
+  },
+  "L3": {
+    "name": "Dumbbell RDL’s",
+    "group": "Legs"
+  },
+  "L4": {
+    "name": "Dumbbell Offset Lunges",
+    "group": "Legs"
+  },
+  "L5": {
+    "name": "Dumbbell One-legged Romanian Deadlifts",
+    "group": "Legs"
+  },
+  "L6": {
+    "name": "Goblet Squat",
+    "group": "Legs"
+  },
+  "L7": {
+    "name": "Swings",
+    "group": "Legs"
+  },
+  "L8": {
+    "name": "Thrusters",
+    "group": "Legs"
+  },
+  "L9": {
+    "name": "Dumbbell Carries",
+    "group": "Legs"
+  },
+  "C1": {
+    "name": "Dumbbell Bench Press",
+    "group": "Chest"
+  },
+  "C2": {
+    "name": "Dumbbell Upper Chest Pullover",
+    "group": "Chest"
+  },
+  "C3": {
+    "name": "Dumbbell Incline Squeeze Press",
+    "group": "Chest"
+  },
+  "C4": {
+    "name": "Dumbbell Weighted Dips",
+    "group": "Chest"
+  },
+  "C5": {
+    "name": "Dumbbell Floor Flys",
+    "group": "Chest"
+  },
+  "S1": {
+    "name": "Dumbbell Scoop Press",
+    "group": "Shoulders"
+  },
+  "S2": {
+    "name": "Dumbbell Cheat Laterals",
+    "group": "Shoulders"
+  },
+  "S3": {
+    "name": "Dumbbell Push Press",
+    "group": "Shoulders"
+  },
+  "S4": {
+    "name": "Dumbbell Rear Delt Rows",
+    "group": "Shoulders"
+  },
+  "S5": {
+    "name": "Dumbbell Front Raise",
+    "group": "Shoulders"
+  },
+  "S6": {
+    "name": "Dumbbell Over and Backs",
+    "group": "Shoulders"
+  }
+}

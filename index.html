@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Daily Workout Companion — Pro</title>
+  <meta name="theme-color" content="#111111"/>
+  <link rel="manifest" href="manifest.json"/>
+  <link rel="stylesheet" href="style.css" />
+  <script type="module" src="app.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">Daily Workout Companion</div>
+    <div class="clock" id="clock">--:--:--</div>
+  </header>
+
+  <main class="container">
+    <!-- Session presets -->
+    <section class="card">
+      <h2>Session presets</h2>
+      <p class="muted">Choose a preset to auto-fill A/B exercises for each 10‑min block. You can edit them after.</p>
+      <div class="row">
+        <div class="col">
+          <label for="preset">Preset</label>
+          <select id="preset">
+            <option value="">— None (custom) —</option>
+            <option value="day1">Day 1 — Chest + Triceps</option>
+            <option value="day2">Day 2 — Back + Biceps</option>
+            <option value="day3">Day 3 — Legs + Shoulders</option>
+            <option value="day4">Day 4 — Chest + Shoulders</option>
+            <option value="day5">Day 5 — Back + Triceps</option>
+            <option value="day6">Day 6 — Legs + Biceps</option>
+          </select>
+        </div>
+        <div class="col">
+          <a class="btn" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Brutal+HIIT+Ladder+Workout+-+20+Minute+HIIT+Workout+at+Home">Open 20‑min HIIT ▷</a>
+        </div>
+      </div>
+      <details>
+        <summary><strong>What presets do</strong></summary>
+        <p>Each day sets two 10‑minute EMOM blocks with A/B exercises. When the timer runs, the viewer auto-switches A↔B every minute.</p>
+      </details>
+    </section>
+
+    <!-- Block selectors -->
+    <section class="card">
+      <h2>Strength blocks (EMOM)</h2>
+      <div class="row">
+        <div class="col"><h3>Block 1</h3></div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <label for="a1">A1 (odd minutes)</label>
+          <select id="a1"></select>
+        </div>
+        <div class="col">
+          <label for="b1">B1 (even minutes)</label>
+          <select id="b1"></select>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col"><h3>Block 2</h3></div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <label for="a2">A2 (odd minutes)</label>
+          <select id="a2"></select>
+        </div>
+        <div class="col">
+          <label for="b2">B2 (even minutes)</label>
+          <select id="b2"></select>
+        </div>
+      </div>
+      <p class="muted">Tip: Use URL params like <code>?a=C1&b=C5&a2=T1&b2=T2</code> to link a session.</p>
+    </section>
+
+    <!-- Timer -->
+    <section class="card">
+      <h2>EMOM timer</h2>
+      <div class="row">
+        <div class="col">
+          <label for="roundSeconds">Round length (sec)</label>
+          <input id="roundSeconds" type="number" min="15" step="15" value="60"/>
+        </div>
+        <div class="col">
+          <label for="roundsPerBlock">Rounds per block</label>
+          <input id="roundsPerBlock" type="number" min="1" max="30" step="1" value="10"/>
+        </div>
+        <div class="col">
+          <label for="enableBeep">Beep on minute</label>
+          <input id="enableBeep" type="checkbox" checked />
+        </div>
+        <div class="col">
+          <button class="btn primary" id="startBtn">Start</button>
+          <button class="btn" id="pauseBtn">Pause</button>
+          <button class="btn danger" id="resetBtn">Reset</button>
+        </div>
+      </div>
+      <div class="timerDisplay" id="timerDisplay">
+        <div class="timerBig" id="timerBig">10:00</div>
+        <div class="timerMeta">
+          <span id="metaBlock">Block 1</span> •
+          <span id="metaRound">Round 1 / 10</span> •
+          <span id="metaSide">A (odd)</span>
+        </div>
+        <div class="muted">Shortcuts: <kbd>Space</kbd>=Start/Pause, <kbd>N</kbd>=Next round, <kbd>R</kbd>=Reset</div>
+      </div>
+    </section>
+
+    <!-- Viewer -->
+    <section class="card">
+      <h2>Exercise viewer</h2>
+      <div class="viewer">
+        <div class="viewerLabel" id="viewerLabel">A1 — </div>
+        <img id="viewerImg" src="assets/exercises/placeholder.svg" alt="Exercise" />
+      </div>
+    </section>
+
+    <!-- Logger -->
+    <section class="card">
+      <h2>Log a set</h2>
+      <div class="row">
+        <div class="col">
+          <label for="reps">Reps</label>
+          <input id="reps" type="number" inputmode="numeric" min="1" step="1" placeholder="e.g., 10" />
+        </div>
+        <div class="col">
+          <label for="weight">Weight</label>
+          <input id="weight" type="number" inputmode="decimal" min="0" step="0.5" placeholder="e.g., 25" />
+        </div>
+        <div class="col">
+          <label for="unit">Unit</label>
+          <select id="unit"><option value="lb">lb</option><option value="kg">kg</option></select>
+        </div>
+        <div class="col">
+          <label for="notes">Notes</label>
+          <input id="notes" type="text" placeholder="tempo, RIR, etc." />
+        </div>
+        <div class="col">
+          <button class="btn primary" id="logBtn">Log current</button>
+        </div>
+      </div>
+      <p class="muted">Logs include the active block (1/2), round, and side (A/B) at the time you click.</p>
+    </section>
+
+    <!-- Logs -->
+    <section class="card">
+      <h2>Logged sets</h2>
+      <div class="controls">
+        <input id="filterText" type="text" placeholder="Filter…" />
+        <button class="btn" id="exportCSV">Export CSV</button>
+        <button class="btn" id="exportJSON">Export JSON</button>
+        <label class="btn">Import JSON <input type="file" id="importJSON" accept="application/json" style="display:none;"></label>
+        <button class="btn danger" id="clearLogs">Clear All</button>
+      </div>
+      <div class="tablewrap">
+        <table id="logTable">
+          <thead><tr>
+            <th>Time</th><th>Block</th><th>Round</th><th>Side</th><th>Exercise</th><th>Name</th><th>Reps</th><th>Weight</th><th>Unit</th><th>Notes</th>
+          </tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="card">
+      <details>
+        <summary><strong>Image setup & rights</strong></summary>
+        <ul>
+          <li>Put images at <code>assets/exercises/</code> named <code>CODE.jpg</code> (e.g., <code>C1.jpg</code>) or edit <code>image_map.json</code> with full URLs.</li>
+          <li>Recommended: 1600–2200 px width, JPG 75–85% quality.</li>
+          <li>Ensure you have rights to publish the images if your repo is public.</li>
+        </ul>
+      </details>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span>© 2025 Daily Workout Companion</span>
+  </footer>
+</body>
+</html>
