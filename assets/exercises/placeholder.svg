@@ -7,6 +7,7 @@
   </defs>
   <rect width="100%" height="100%" fill="url(#g)"/>
   <g fill="#777" font-family="Arial, Helvetica, sans-serif" text-anchor="middle">
-    <text x="800" y="450" font-size="42">Add assets/exercises/CODE.jpg (or edit image_map.json)</text>
+    <text x="800" y="440" font-size="42">Exercise image not found</text>
+    <text x="800" y="490" font-size="28">Add assets/exercises/CODE.jpg or edit image_map.json</text>
   </g>
 </svg>

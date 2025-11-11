@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Daily Workout Companion — Pro</title>
+  <title>Daily Workout Companion — Volume Tracker</title>
   <meta name="theme-color" content="#111111"/>
   <link rel="manifest" href="manifest.json"/>
   <link rel="stylesheet" href="style.css" />
@@ -16,108 +16,44 @@
   </header>
 
   <main class="container">
-    <!-- Session presets -->
     <section class="card">
-      <h2>Session presets</h2>
-      <p class="muted">Choose a preset to auto-fill A/B exercises for each 10‑min block. You can edit them after.</p>
+      <h2>Choose exercises</h2>
+      <p class="muted">Pick up to 4 exercises and set one as <strong>Active</strong> for logging.</p>
+      <div class="row">
+        <div class="col"><label for="e1">E1</label><select id="e1"></select><button class="btn" data-active="e1">Set Active</button></div>
+        <div class="col"><label for="e2">E2</label><select id="e2"></select><button class="btn" data-active="e2">Set Active</button></div>
+        <div class="col"><label for="e3">E3</label><select id="e3"></select><button class="btn" data-active="e3">Set Active</button></div>
+        <div class="col"><label for="e4">E4</label><select id="e4"></select><button class="btn" data-active="e4">Set Active</button></div>
+      </div>
       <div class="row">
         <div class="col">
-          <label for="preset">Preset</label>
-          <select id="preset">
-            <option value="">— None (custom) —</option>
-            <option value="day1">Day 1 — Chest + Triceps</option>
-            <option value="day2">Day 2 — Back + Biceps</option>
-            <option value="day3">Day 3 — Legs + Shoulders</option>
-            <option value="day4">Day 4 — Chest + Shoulders</option>
-            <option value="day5">Day 5 — Back + Triceps</option>
-            <option value="day6">Day 6 — Legs + Biceps</option>
+          <label for="currentExercise">Current (Active)</label>
+          <select id="currentExercise"></select>
+        </div>
+        <div class="col">
+          <label for="displayUnit">Display unit</label>
+          <select id="displayUnit"><option value="lb">lb</option><option value="kg">kg</option></select>
+        </div>
+        <div class="col">
+          <label for="rangeSelect">Range</label>
+          <select id="rangeSelect">
+            <option value="today">Today</option>
+            <option value="7d">Last 7 days</option>
+            <option value="30d">Last 30 days</option>
+            <option value="all">All time</option>
           </select>
         </div>
-        <div class="col">
-          <a class="btn" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Brutal+HIIT+Ladder+Workout+-+20+Minute+HIIT+Workout+at+Home">Open 20‑min HIIT ▷</a>
-        </div>
-      </div>
-      <details>
-        <summary><strong>What presets do</strong></summary>
-        <p>Each day sets two 10‑minute EMOM blocks with A/B exercises. When the timer runs, the viewer auto-switches A↔B every minute.</p>
-      </details>
-    </section>
-
-    <!-- Block selectors -->
-    <section class="card">
-      <h2>Strength blocks (EMOM)</h2>
-      <div class="row">
-        <div class="col"><h3>Block 1</h3></div>
-      </div>
-      <div class="row">
-        <div class="col">
-          <label for="a1">A1 (odd minutes)</label>
-          <select id="a1"></select>
-        </div>
-        <div class="col">
-          <label for="b1">B1 (even minutes)</label>
-          <select id="b1"></select>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col"><h3>Block 2</h3></div>
-      </div>
-      <div class="row">
-        <div class="col">
-          <label for="a2">A2 (odd minutes)</label>
-          <select id="a2"></select>
-        </div>
-        <div class="col">
-          <label for="b2">B2 (even minutes)</label>
-          <select id="b2"></select>
-        </div>
-      </div>
-      <p class="muted">Tip: Use URL params like <code>?a=C1&b=C5&a2=T1&b2=T2</code> to link a session.</p>
-    </section>
-
-    <!-- Timer -->
-    <section class="card">
-      <h2>EMOM timer</h2>
-      <div class="row">
-        <div class="col">
-          <label for="roundSeconds">Round length (sec)</label>
-          <input id="roundSeconds" type="number" min="15" step="15" value="60"/>
-        </div>
-        <div class="col">
-          <label for="roundsPerBlock">Rounds per block</label>
-          <input id="roundsPerBlock" type="number" min="1" max="30" step="1" value="10"/>
-        </div>
-        <div class="col">
-          <label for="enableBeep">Beep on minute</label>
-          <input id="enableBeep" type="checkbox" checked />
-        </div>
-        <div class="col">
-          <button class="btn primary" id="startBtn">Start</button>
-          <button class="btn" id="pauseBtn">Pause</button>
-          <button class="btn danger" id="resetBtn">Reset</button>
-        </div>
-      </div>
-      <div class="timerDisplay" id="timerDisplay">
-        <div class="timerBig" id="timerBig">10:00</div>
-        <div class="timerMeta">
-          <span id="metaBlock">Block 1</span> •
-          <span id="metaRound">Round 1 / 10</span> •
-          <span id="metaSide">A (odd)</span>
-        </div>
-        <div class="muted">Shortcuts: <kbd>Space</kbd>=Start/Pause, <kbd>N</kbd>=Next round, <kbd>R</kbd>=Reset</div>
       </div>
     </section>
 
-    <!-- Viewer -->
     <section class="card">
-      <h2>Exercise viewer</h2>
+      <h2>Active exercise</h2>
       <div class="viewer">
-        <div class="viewerLabel" id="viewerLabel">A1 — </div>
+        <div class="viewerLabel" id="viewerLabel">—</div>
         <img id="viewerImg" src="assets/exercises/placeholder.svg" alt="Exercise" />
       </div>
     </section>
 
-    <!-- Logger -->
     <section class="card">
       <h2>Log a set</h2>
       <div class="row">
@@ -138,17 +74,40 @@
           <input id="notes" type="text" placeholder="tempo, RIR, etc." />
         </div>
         <div class="col">
-          <button class="btn primary" id="logBtn">Log current</button>
+          <label for="nSets">Sets</label>
+          <input id="nSets" type="number" inputmode="numeric" min="1" step="1" value="1" />
+        </div>
+        <div class="col">
+          <button class="btn primary" id="logBtn">Log set(s)</button>
         </div>
       </div>
-      <p class="muted">Logs include the active block (1/2), round, and side (A/B) at the time you click.</p>
+      <p class="muted">Volume = <code>reps × weight</code>. Batch logging repeats the same set N times.</p>
     </section>
 
-    <!-- Logs -->
+    <section class="card">
+      <h2>Totals & progress</h2>
+      <div class="row">
+        <div class="col stat"><div class="statNum" id="totalVolume">0</div><div class="statLbl">Total volume</div></div>
+        <div class="col stat"><div class="statNum" id="totalSets">0</div><div class="statLbl">Total sets</div></div>
+        <div class="col stat"><div class="statNum" id="avgReps">0</div><div class="statLbl">Avg reps/set</div></div>
+        <div class="col stat"><div class="statNum" id="avgWeight">0</div><div class="statLbl">Avg weight</div></div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <h3>By category</h3>
+          <table id="byGroup"><thead><tr><th>Category</th><th>Volume</th></tr></thead><tbody></tbody></table>
+        </div>
+        <div class="col">
+          <h3>By exercise</h3>
+          <table id="byExercise"><thead><tr><th>Exercise</th><th>Volume</th></tr></thead><tbody></tbody></table>
+        </div>
+      </div>
+    </section>
+
     <section class="card">
       <h2>Logged sets</h2>
       <div class="controls">
-        <input id="filterText" type="text" placeholder="Filter…" />
+        <input id="filterText" type="text" placeholder="Filter by code or name…" />
         <button class="btn" id="exportCSV">Export CSV</button>
         <button class="btn" id="exportJSON">Export JSON</button>
         <label class="btn">Import JSON <input type="file" id="importJSON" accept="application/json" style="display:none;"></label>
@@ -156,9 +115,12 @@
       </div>
       <div class="tablewrap">
         <table id="logTable">
-          <thead><tr>
-            <th>Time</th><th>Block</th><th>Round</th><th>Side</th><th>Exercise</th><th>Name</th><th>Reps</th><th>Weight</th><th>Unit</th><th>Notes</th>
-          </tr></thead>
+          <thead>
+            <tr>
+              <th>Time</th><th>Exercise</th><th>Name</th><th>Category</th>
+              <th>Reps</th><th>Weight</th><th>Unit</th><th>Volume</th><th>Notes</th>
+            </tr>
+          </thead>
           <tbody></tbody>
         </table>
       </div>
@@ -170,7 +132,8 @@
         <ul>
           <li>Put images at <code>assets/exercises/</code> named <code>CODE.jpg</code> (e.g., <code>C1.jpg</code>) or edit <code>image_map.json</code> with full URLs.</li>
           <li>Recommended: 1600–2200 px width, JPG 75–85% quality.</li>
-          <li>Ensure you have rights to publish the images if your repo is public.</li>
+          <li>Totals convert mixed units to your selected <em>Display unit</em> for consistent tracking.</li>
+          <li>Ensure you have rights to publish images if your repo is public.</li>
         </ul>
       </details>
     </section>

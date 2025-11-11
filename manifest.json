@@ -1,6 +1,6 @@
 {
-  "name": "Daily Workout Companion",
-  "short_name": "DWC",
+  "name": "Daily Workout Companion — Volume",
+  "short_name": "DWC Volume",
   "start_url": ".",
   "display": "standalone",
   "background_color": "#111111",
