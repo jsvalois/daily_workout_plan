@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Daily Workout Companion — Volume Tracker</title>
+  <title>Daily Workout Companion — Volume + Presets</title>
   <meta name="theme-color" content="#111111"/>
   <link rel="manifest" href="manifest.json"/>
   <link rel="stylesheet" href="style.css" />
@@ -16,15 +16,75 @@
   </header>
 
   <main class="container">
+
+    <!-- HIIT segment (no timer, just link + log) -->
     <section class="card">
-      <h2>Choose exercises</h2>
-      <p class="muted">Pick up to 4 exercises and set one as <strong>Active</strong> for logging.</p>
+      <h2>HIIT segment (20 minutes)</h2>
       <div class="row">
-        <div class="col"><label for="e1">E1</label><select id="e1"></select><button class="btn" data-active="e1">Set Active</button></div>
-        <div class="col"><label for="e2">E2</label><select id="e2"></select><button class="btn" data-active="e2">Set Active</button></div>
-        <div class="col"><label for="e3">E3</label><select id="e3"></select><button class="btn" data-active="e3">Set Active</button></div>
-        <div class="col"><label for="e4">E4</label><select id="e4"></select><button class="btn" data-active="e4">Set Active</button></div>
+        <div class="col">
+          <a class="btn primary" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Brutal+HIIT+Ladder+Workout+-+20+Minute+HIIT+Workout+at+Home">Open HIIT video ▷</a>
+        </div>
+        <div class="col">
+          <button class="btn" id="logHiitBtn">Log HIIT Completed</button>
+        </div>
+        <div class="col muted">
+          Logs a 20‑min HIIT session entry (for your records). No timer is used.
+        </div>
       </div>
+    </section>
+
+    <!-- Session presets -->
+    <section class="card">
+      <h2>Session presets</h2>
+      <p class="muted">Choose a preset to auto-fill A/B exercises for each block. No timers involved.</p>
+      <div class="row">
+        <div class="col">
+          <label for="preset">Preset</label>
+          <select id="preset">
+            <option value="">— None (custom) —</option>
+            <option value="day1">Day 1 — Chest + Triceps</option>
+            <option value="day2">Day 2 — Back + Biceps</option>
+            <option value="day3">Day 3 — Legs + Shoulders</option>
+            <option value="day4">Day 4 — Chest + Shoulders</option>
+            <option value="day5">Day 5 — Back + Triceps</option>
+            <option value="day6">Day 6 — Legs + Biceps</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Block selectors (no timers) -->
+      <div class="row">
+        <div class="col"><h3>Block 1</h3></div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <label for="a1">A1</label>
+          <select id="a1"></select>
+          <button class="btn" data-active="a1">Set Active</button>
+        </div>
+        <div class="col">
+          <label for="b1">B1</label>
+          <select id="b1"></select>
+          <button class="btn" data-active="b1">Set Active</button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col"><h3>Block 2</h3></div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <label for="a2">A2</label>
+          <select id="a2"></select>
+          <button class="btn" data-active="a2">Set Active</button>
+        </div>
+        <div class="col">
+          <label for="b2">B2</label>
+          <select id="b2"></select>
+          <button class="btn" data-active="b2">Set Active</button>
+        </div>
+      </div>
+
+      <!-- Active selector and units -->
       <div class="row">
         <div class="col">
           <label for="currentExercise">Current (Active)</label>
@@ -46,6 +106,7 @@
       </div>
     </section>
 
+    <!-- Viewer -->
     <section class="card">
       <h2>Active exercise</h2>
       <div class="viewer">
@@ -54,6 +115,7 @@
       </div>
     </section>
 
+    <!-- Logger -->
     <section class="card">
       <h2>Log a set</h2>
       <div class="row">
@@ -81,9 +143,10 @@
           <button class="btn primary" id="logBtn">Log set(s)</button>
         </div>
       </div>
-      <p class="muted">Volume = <code>reps × weight</code>. Batch logging repeats the same set N times.</p>
+      <p class="muted">Each set’s volume = <code>reps × weight</code>. Batch logging repeats the same set N times.</p>
     </section>
 
+    <!-- Totals -->
     <section class="card">
       <h2>Totals & progress</h2>
       <div class="row">
@@ -91,11 +154,12 @@
         <div class="col stat"><div class="statNum" id="totalSets">0</div><div class="statLbl">Total sets</div></div>
         <div class="col stat"><div class="statNum" id="avgReps">0</div><div class="statLbl">Avg reps/set</div></div>
         <div class="col stat"><div class="statNum" id="avgWeight">0</div><div class="statLbl">Avg weight</div></div>
+        <div class="col stat"><div class="statNum" id="hiitCount">0</div><div class="statLbl">HIIT sessions</div></div>
       </div>
       <div class="row">
         <div class="col">
-          <h3>By category</h3>
-          <table id="byGroup"><thead><tr><th>Category</th><th>Volume</th></tr></thead><tbody></tbody></table>
+          <h3>By muscle group</h3>
+          <table id="byGroup"><thead><tr><th>Group</th><th>Volume</th></tr></thead><tbody></tbody></table>
         </div>
         <div class="col">
           <h3>By exercise</h3>
@@ -104,8 +168,9 @@
       </div>
     </section>
 
+    <!-- Logs -->
     <section class="card">
-      <h2>Logged sets</h2>
+      <h2>Logged entries</h2>
       <div class="controls">
         <input id="filterText" type="text" placeholder="Filter by code or name…" />
         <button class="btn" id="exportCSV">Export CSV</button>
@@ -117,7 +182,7 @@
         <table id="logTable">
           <thead>
             <tr>
-              <th>Time</th><th>Exercise</th><th>Name</th><th>Category</th>
+              <th>Time</th><th>Type</th><th>Exercise</th><th>Name</th><th>Group</th>
               <th>Reps</th><th>Weight</th><th>Unit</th><th>Volume</th><th>Notes</th>
             </tr>
           </thead>
@@ -132,11 +197,12 @@
         <ul>
           <li>Put images at <code>assets/exercises/</code> named <code>CODE.jpg</code> (e.g., <code>C1.jpg</code>) or edit <code>image_map.json</code> with full URLs.</li>
           <li>Recommended: 1600–2200 px width, JPG 75–85% quality.</li>
-          <li>Totals convert mixed units to your selected <em>Display unit</em> for consistent tracking.</li>
+          <li>Totals convert mixed units to your chosen <em>Display unit</em>.</li>
           <li>Ensure you have rights to publish images if your repo is public.</li>
         </ul>
       </details>
     </section>
+
   </main>
 
   <footer class="footer">

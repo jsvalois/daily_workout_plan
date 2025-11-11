@@ -1,35 +1,24 @@
-# Daily Workout Companion — Volume Tracker (No EMOM)
+# Daily Workout Companion — Volume + Presets (HIIT link, no timers)
 
-**Goal:** Focus on progressive overload by tracking **reps × weight** volume.  
-Example: *3 sets × 10 reps × 10 lb* → **300 lb** total volume for that category.
-
-## Features
-- Live clock
-- Pick up to **4 exercises** and set one as **Active** for logging
-- **Big image** for the active exercise (image‑first via `image_map.json`; placeholder if missing)
-- Log **reps, weight, unit, notes** — with **batch logging** of identical sets
-- **Totals & progress**: per‑set volume, totals by **exercise** and by **category**, overall statistics
-- **Range filter**: Today / 7d / 30d / All
-- **Display unit**: lb or kg (mixed logs are converted for display)
-- **Export CSV/JSON**, **Import JSON**, **Clear**
-- **Offline** capable (Service Worker + Manifest)
+This site restores the **Session Presets** workflow and the **HIIT segment** link while keeping a **volume-first** strength logger.
+- **HIIT:** Big button to open your 20‑minute HIIT video + an optional **Log HIIT Completed** (no timer used).
+- **Presets:** Pick a day to auto-fill A/B exercises for two blocks (A1/B1 and A2/B2). Use **Set Active** to choose which image is displayed.
+- **Logging:** Record **reps, weight, unit, notes**. Batch logging repeats identical sets N times.
+- **Progress:** Totals by **exercise** and **muscle group**, overall volume, average reps/weight, and HIIT session count.
+- **Filters:** Today / 7d / 30d / All, and lb/kg display with conversions.
+- **Data:** Stored locally (localStorage). Export CSV/JSON. Import JSON. Offline-ready.
 
 ## Add your images
-Place images at `assets/exercises/` named by code (`C1.jpg`, `B2.jpg`, …) or set direct paths/URLs in `image_map.json`.  
-Suggestion: 1600–2200 px width, JPG 75–85% quality (PNG only if needed).
+- Put files in `assets/exercises/` named by code (e.g., `C1.jpg`, `B2.jpg`) **or** edit `image_map.json` to point to your own paths/URLs.
+- Suggested: 1600–2200 px width, JPG 75–85% quality.
 
 ## Publish on GitHub Pages
 ```bash
 git init
 git add .
-git commit -m "Add DWC Volume tracker (no EMOM)"
+git commit -m "Add DWC Volume + Presets (HIIT link, no timers)"
 git branch -M main
 git remote add origin git@github.com:USERNAME/daily_workout_plan.git
 git push -u origin main
 ```
-Then enable **Settings → Pages → Deploy from branch → main / root**.
-
-## CSV columns
-- `ts`, `date`, `exercise`, `name`, `group`, `reps`, `weight`, `unit`, `volume` (native unit), `volume_lb`, `volume_kg`, `notes`
-
-> Totals are displayed in your selected **Display unit** with conversions (1 kg = 2.2046226218 lb).
+Enable **Settings → Pages → Deploy from branch → main / root**.

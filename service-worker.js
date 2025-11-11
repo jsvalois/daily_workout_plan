@@ -1,6 +1,5 @@
-const CACHE = 'dwc-vol-cache-v1';
+const CACHE = 'dwc-vp-cache-v1';
 const CORE = ['/', '/index.html', '/style.css', '/app.js', '/exercise_map.json', '/image_map.json', '/assets/exercises/placeholder.svg'];
-
 self.addEventListener('install', (e) => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(CORE)).then(self.skipWaiting()));
 });
